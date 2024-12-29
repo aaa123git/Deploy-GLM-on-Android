@@ -60,3 +60,7 @@ executorch能够在Android上部署LLAMA模型，参考下列链接一步一步�
 - prebuilt_libs: 我预先编译好的`executorch-llama.aar`
 
 
+## TODO
+- [] 全流程的部署方式
+- [] qnn部署方式
+- [] 将修改的代码提交到executorch，而不是复制一份LlamaDemo
