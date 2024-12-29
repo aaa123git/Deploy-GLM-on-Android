@@ -29,6 +29,31 @@ executorch能够在Android上部署LLAMA模型，参考下列链接一步一步�
 
 
 ## 部署方法2（二选一）：下载转换好的模型和预编译好的aar
+1. 下载转换好的模型
+    * xnnpack: <https://huggingface.co/wandz/glm-edge-1.5B-xnnpack>
+    * qnn: to-be-continued
+    
+
+2. 将模型传到手机上
+
+注意:
+1. 手机要开启开发者模式
+2. 需要安装adb，参考<https://developer.android.com/tools/adb?hl=zh-cn>
+
+```
+adb shell mkdir -p /data/local/tmp/llama
+adb push ./glm-edge-1.5B-xnnpack/glm_edge_1.5B_xnnpack.pte /data/local/tmp/llama
+adb push ./glm-edge-1.5B-xnnpack/glm_edge_tokenizer.model /data/local/tmp/llama
+```
+
+
+3. 将`./prebuilt_libs/xnnpack/executorch-llama.aar`复制到`./LlamaDemo/app/libs`目录下
+
+4. 编译java项目
+
+    用Android Studio打开`./LlamaDemo`目录，运行app(^R) 。 Android Studio将完成编译，并在手机上安装app（可以操作手机，同意安装）
+
+    参考<https://github.com/pytorch/executorch/blob/v0.4.0/examples/demo-apps/android/LlamaDemo/docs/delegates/xnnpack_README.md#run-the-android-demo-app>
 
 
 ## 项目文件说明
