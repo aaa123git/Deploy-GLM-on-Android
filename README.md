@@ -24,7 +24,7 @@ executorch能够在Android上部署LLAMA模型，参考下列链接一步一步�
     * java代码<https://github.com/pytorch/executorch/blob/6a085fff7f78cb51443d97a827503acc6ae28e3c/examples/demo-apps/android/LlamaDemo/app/src/main/java/com/example/executorchllamademo/PromptFormat.java#L18-L63> 中硬编码了chat template
 
 
-## 部署方法1（二选一）：完成全流程的编译、转换、部署
+## 部署方法1（二选一）：全流程的编译、转换、部署
 有空再更新
 
 
@@ -35,16 +35,15 @@ executorch能够在Android上部署LLAMA模型，参考下列链接一步一步�
     
 
 2. 将模型传到手机上
+    ```
+    adb shell mkdir -p /data/local/tmp/llama
+    adb push ./glm-edge-1.5B-xnnpack/glm_edge_1.5B_xnnpack.pte /data/local/tmp/llama
+    adb push ./glm-edge-1.5B-xnnpack/glm_edge_tokenizer.model /data/local/tmp/llama
+    ```
 
-注意:
-1. 手机要开启开发者模式
-2. 需要安装adb，参考<https://developer.android.com/tools/adb?hl=zh-cn>
-
-```
-adb shell mkdir -p /data/local/tmp/llama
-adb push ./glm-edge-1.5B-xnnpack/glm_edge_1.5B_xnnpack.pte /data/local/tmp/llama
-adb push ./glm-edge-1.5B-xnnpack/glm_edge_tokenizer.model /data/local/tmp/llama
-```
+    注意:
+    * 手机要开启开发者模式
+    * 需要安装adb，参考<https://developer.android.com/tools/adb?hl=zh-cn>
 
 
 3. 将`./prebuilt_libs/xnnpack/executorch-llama.aar`复制到`./LlamaDemo/app/libs`目录下
